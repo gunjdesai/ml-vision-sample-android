@@ -20,7 +20,7 @@
         </activity>
         <meta-data
             android:name="com.google.mlkit.vision.DEPENDENCIES"
-            android:value="ocr, text" />
+            android:value="ocr, text, ica" />
     </application>
 
 </manifest>

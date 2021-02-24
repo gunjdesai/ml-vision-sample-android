@@ -10,6 +10,9 @@ import android.widget.TextView
 
 import androidx.appcompat.app.AppCompatActivity
 import com.google.mlkit.vision.common.InputImage
+import com.google.mlkit.vision.label.ImageLabeler
+import com.google.mlkit.vision.label.ImageLabeling
+import com.google.mlkit.vision.label.defaults.ImageLabelerOptions
 import com.google.mlkit.vision.text.TextRecognition
 
 
@@ -40,12 +43,20 @@ class MainActivity : AppCompatActivity() {
             val imageUri = data?.data
             val fbImage = InputImage.fromBitmap(MediaStore.Images.Media.getBitmap(this.contentResolver, imageUri), 0)
             val recognizer = TextRecognition.getClient()
+            val labeler = ImageLabeling.getClient(ImageLabelerOptions.DEFAULT_OPTIONS)
+            var output = ""
 
             imageViewer.setImageURI(imageUri)
             outputText.text = "Starting"
+            val r = labeler.process(fbImage)
+                .addOnSuccessListener {
+                    for (label in it) {
+                        output += "Label Given -> ${label.text}"
+                    }
+                }
             val result = recognizer.process(fbImage)
                     .addOnSuccessListener {
-                        var output = ""
+
                         val l1 = "->  \n"
                         val l2 = "->-> "
 
