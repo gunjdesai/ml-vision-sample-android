@@ -1,13 +1,13 @@
 package com.example.ocr
 
 import android.content.Intent
-import android.content.IntentFilter
+
 import android.os.Bundle
 import android.provider.MediaStore
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
+
 import androidx.appcompat.app.AppCompatActivity
 import com.google.mlkit.vision.common.InputImage
 import com.google.mlkit.vision.text.TextRecognition
@@ -46,13 +46,13 @@ class MainActivity : AppCompatActivity() {
             val result = recognizer.process(fbImage)
                     .addOnSuccessListener {
                         var output = ""
-                        val l1 = "----->  \n"
-                        val l2 = "----->  -----> "
-                        it.textBlocks
+                        val l1 = "->  \n"
+                        val l2 = "->-> "
+
                         for (blocks in it.textBlocks) {
                             output += l1
                             for (line in blocks.lines) {
-                                output += l2 + line
+                                output += l2 + line.text
                             }
                         }
                         outputText.text = output

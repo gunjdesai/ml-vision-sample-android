@@ -29,7 +29,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
-        android:textSize="36sp"
+        android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="parent"
         tools:layout_editor_absoluteX="132dp"
         tools:visibility="visible" />
